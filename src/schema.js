@@ -7,6 +7,14 @@ export default class BaseSchema {
     this.errors = {};
   }
 
+  required() {
+    return this.check({
+      name: 'required',
+      message: 'value is required',
+      func: (val) => this.isPresent(val),
+    });
+  }
+
   check(opts) {
     this.checks = [...this.checks, opts];
     return this;

@@ -6,14 +6,6 @@ export default class StringSchema extends BaseSchema {
     this.options = options;
   }
 
-  required() {
-    return this.check({
-      name: 'required',
-      message: 'value is required',
-      func: (val) => val && val.trim().length > 0,
-    });
-  }
-
   contains(containedValue) {
     return this.check({
       name: 'contains',
@@ -28,5 +20,9 @@ export default class StringSchema extends BaseSchema {
       message: `must be longer than ${length}`,
       func: (val) => val && val.length >= length,
     });
+  }
+
+  isPresent(value) {
+    return value && value.trim().length > 0
   }
 }

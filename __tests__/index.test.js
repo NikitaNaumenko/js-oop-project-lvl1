@@ -38,3 +38,39 @@ describe('string', () => {
     expect(schema.isValid('1234')).toBeTruthy();
   });
 });
+
+describe('number', () => {
+  it('with required', () => {
+    const validator = new Validator();
+    const schema = validator.number();
+
+    schema.required();
+    expect(schema.isValid(null)).toBeFalsy();
+    expect(schema.isValid(1)).toBeTruthy();
+  });
+
+  it('with positive', () => {
+    const validator = new Validator();
+    const schema = validator.number();
+
+    schema.positive();
+    expect(schema.isValid(-1)).toBeFalsy();
+    expect(schema.isValid(0)).toBeFalsy();
+    expect(schema.isValid(1)).toBeTruthy();
+  });
+
+  it('with range', () => {
+    const validator = new Validator();
+    const schema = validator.number();
+
+    schema.range(-5, 5);
+
+    expect(schema.isValid(-6)).toBeFalsy();
+    expect(schema.isValid(-5)).toBeTruthy();
+    expect(schema.isValid(-1)).toBeTruthy();
+    expect(schema.isValid(0)).toBeTruthy();
+    expect(schema.isValid(1)).toBeTruthy();
+    expect(schema.isValid(5)).toBeTruthy();
+    expect(schema.isValid(6)).toBeFalsy();
+  });
+});
