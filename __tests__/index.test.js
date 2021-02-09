@@ -74,3 +74,27 @@ describe('number', () => {
     expect(schema.isValid(6)).toBeFalsy();
   });
 });
+
+describe('array', () => {
+  it('with required', () => {
+    const validator = new Validator();
+    const schema = validator.array();
+
+    schema.required();
+
+    expect(schema.isValid(null)).toBeFalsy();
+    expect(schema.isValid([])).toBeTruthy();
+    expect(schema.isValid(['string'])).toBeTruthy();
+  });
+
+  it('with sizeof', () => {
+    const validator = new Validator();
+    const schema = validator.array();
+
+    schema.sizeof(2);
+
+    expect(schema.isValid([])).toBeFalsy();
+    expect(schema.isValid(['string'])).toBeFalsy();
+    expect(schema.isValid(['string', 'number'])).toBeTruthy();
+  });
+});

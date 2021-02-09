@@ -1,4 +1,5 @@
 import StringSchema from './string.js';
+import ArraySchema from './array.js';
 import NumberSchema from './number.js';
 
 export default class Validator {
@@ -16,4 +17,8 @@ export default class Validator {
     return this.checker;
   }
 
+  array() {
+    this.checker = new ArraySchema();
+    return this.checker;
+  }
 }

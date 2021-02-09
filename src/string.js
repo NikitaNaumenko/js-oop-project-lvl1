@@ -1,9 +1,8 @@
 import BaseSchema from './schema.js';
 
 export default class StringSchema extends BaseSchema {
-  constructor(options = {}) {
+  constructor() {
     super({ type: 'string' });
-    this.options = options;
   }
 
   contains(containedValue) {

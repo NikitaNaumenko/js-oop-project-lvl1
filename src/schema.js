@@ -32,4 +32,9 @@ export default class BaseSchema {
 
     return _.isEmpty(this.errors);
   }
+
+  isPresent(value) {
+    return !_.isNil(value);
+  }
+
 }

@@ -1,10 +1,8 @@
-import _ from 'lodash';
 import BaseSchema from './schema.js';
 
 export default class NumberSchema extends BaseSchema {
-  constructor(options = {}) {
+  constructor() {
     super({ type: 'number' });
-    this.options = options;
   }
 
   positive() {
@@ -21,9 +19,5 @@ export default class NumberSchema extends BaseSchema {
       message: `must include in range ${min}-${max}`,
       func: (val) => val >= min && val <= max,
     });
-  }
-
-  isPresent(value) {
-    return !_.isNil(value);
   }
 }
