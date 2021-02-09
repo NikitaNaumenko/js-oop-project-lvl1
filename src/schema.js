@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default class BaseSchema {
   constructor(options = {}) {
     this.type = options.type;
@@ -11,6 +13,7 @@ export default class BaseSchema {
   }
 
   isValid(val) {
+    this.errors = {};
     this.checks.forEach(({ name, message, func }) => {
       if (func(val)) {
         return;
@@ -18,5 +21,7 @@ export default class BaseSchema {
 
       this.errors[name] = message;
     });
+
+    return _.isEmpty(this.errors);
   }
 }

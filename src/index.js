@@ -9,9 +9,4 @@ export default class Validator {
     this.checker = new StringSchema();
     return this.checker;
   }
-
-  isValid(val) {
-
-
-  }
 }
