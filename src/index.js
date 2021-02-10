@@ -1,6 +1,7 @@
 import StringSchema from './string.js';
 import ArraySchema from './array.js';
 import NumberSchema from './number.js';
+import ObjectSchema from './object.js';
 
 export default class Validator {
   constructor() {
@@ -19,6 +20,11 @@ export default class Validator {
 
   array() {
     this.checker = new ArraySchema();
+    return this.checker;
+  }
+
+  object() {
+    this.checker = new ObjectSchema();
     return this.checker;
   }
 }

@@ -33,6 +33,10 @@ export default class BaseSchema {
     return _.isEmpty(this.errors);
   }
 
+  // get errors() {
+  //   return this.errors;
+  // }
+
   isPresent(value) {
     return !_.isNil(value);
   }

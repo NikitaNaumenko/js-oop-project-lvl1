@@ -98,3 +98,21 @@ describe('array', () => {
     expect(schema.isValid(['string', 'number'])).toBeTruthy();
   });
 });
+
+describe('object', () => {
+  it('check nested', () => {
+    const validator = new Validator();
+    const schema = validator.object();
+
+    schema.shape({
+      name: validator.string().required(),
+      age: validator.number().positive(),
+      properties: validator.array().sizeof(2),
+    });
+
+    const invalid = { name: '', age: -4, properties: ['longhair'] };
+    const valid = { name: 'John Snow', age: 25, properties: ['sword', 'fat friend'] };
+    expect(schema.isValid(invalid)).toBeFalsy();
+    expect(schema.isValid(valid)).toBeTruthy();
+  });
+});
