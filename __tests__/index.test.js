@@ -116,3 +116,37 @@ describe('object', () => {
     expect(schema.isValid(valid)).toBeTruthy();
   });
 });
+
+describe('custom', () => {
+  it('custom for string', () => {
+    const v = new Validator();
+    const fn = (value, start) => value.startsWith(start);
+    v.addValidator('string', 'startWith', fn);
+
+    const schema = v.string().test('startWith', 'H');
+    expect(schema.isValid('exlet')).toBeFalsy();
+    expect(schema.isValid('Hexlet')).toBeTruthy();
+  });
+
+  it('custom for number', () => {
+    const v = new Validator();
+    const fn = (value, min) => value >= min;
+    v.addValidator('number', 'min', fn);
+
+    const schema = v.number().test('min', 5);
+    expect(schema.isValid(4)).toBeFalsy();
+    expect(schema.isValid(6)).toBeTruthy();
+  });
+
+  it('custom for array', () => {
+    const v = new Validator();
+    const fn = (value, max) => value.length <= max;
+    v.addValidator('array', 'maxLength', fn);
+
+    const schema = v.array().test('maxLength', 3);
+    expect(schema.isValid([1, 2, 3, 4])).toBeFalsy();
+    expect(schema.isValid([1, 2, 3])).toBeTruthy();
+    expect(schema.isValid([1, 2])).toBeTruthy();
+    expect(schema.isValid([1])).toBeTruthy();
+  });
+});

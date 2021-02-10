@@ -5,6 +5,7 @@ export default class BaseSchema {
     this.type = options.type;
     this.checks = [];
     this.errors = {};
+    this.customValidators = {};
   }
 
   required() {
@@ -33,12 +34,18 @@ export default class BaseSchema {
     return _.isEmpty(this.errors);
   }
 
-  // get errors() {
-  //   return this.errors;
-  // }
+  registerCustomValidator(name, fn) {
+    this.customValidators[name] = fn;
+  }
+
+  test(validatorName, ...args) {
+    return this.check({
+      name: validatorName,
+      func: (val) => this.customValidators[validatorName](val, ...args),
+    });
+  }
 
   isPresent(value) {
     return !_.isNil(value);
   }
-
 }
