@@ -12,7 +12,7 @@ export default class BaseSchema {
     return this.check({
       name: 'required',
       message: 'value is required',
-      func: (val) => this.isPresent(val),
+      func: (val) => this.constructor.isPresent(val),
     });
   }
 
@@ -45,7 +45,7 @@ export default class BaseSchema {
     });
   }
 
-  isPresent(value) {
+  static isPresent(value) {
     return !_.isNil(value);
   }
 }

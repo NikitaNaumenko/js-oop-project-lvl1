@@ -21,7 +21,7 @@ export default class StringSchema extends BaseSchema {
     });
   }
 
-  isPresent(value) {
-    return value && value.trim().length > 0
+  static isPresent(value) {
+    return value && value.trim().length > 0;
   }
 }
