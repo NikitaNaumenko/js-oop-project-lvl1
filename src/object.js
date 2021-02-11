@@ -4,6 +4,7 @@ import BaseSchema from './schema.js';
 export default class ObjectSchema extends BaseSchema {
   constructor() {
     super({ type: 'object' });
+    this.fields = [];
   }
 
   shape(obj) {
