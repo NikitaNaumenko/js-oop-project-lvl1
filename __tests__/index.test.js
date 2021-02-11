@@ -57,6 +57,7 @@ describe('number', () => {
     expect(schema.isValid(-1)).toBeFalsy();
     expect(schema.isValid(0)).toBeFalsy();
     expect(schema.isValid(1)).toBeTruthy();
+    expect(schema.isValid(null)).toBeTruthy();
   });
 
   it('with range', () => {

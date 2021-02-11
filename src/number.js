@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import BaseSchema from './schema.js';
 
 export default class NumberSchema extends BaseSchema {
@@ -9,7 +10,7 @@ export default class NumberSchema extends BaseSchema {
     return this.check({
       name: 'positive',
       message: 'must be greater then zero',
-      func: (val) => val > 0,
+      func: (val) => _.isNil(val) || val > 0,
     });
   }
 
